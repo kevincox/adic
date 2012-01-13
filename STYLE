@@ -1,0 +1,58 @@
+CODING STYLE GUIDELINES
+-----------------------
+
+These are the coding guidelines for the Google Instant Intergration Add-on.  If
+the rules make no sense to you try to look at the code and figure it out.
+
+
+
+Coding Style
+--------------------------------------------------------------------------------
+This is what you write, not how you write it.
+
+Basicly follow the Torvalds guidelines with a grain of salt.
+	• http://www.kernel.org/doc/Documentation/CodingStyle
+	• https://computing.llnl.gov/linux/slurm/coding_style.pdf (pdf)
+
+General Style
+--------------------------------------------------------------------------------
+Linux kernel style with the following modifications.
+	• Use camel-case variable and function names.  (JavaScript standard)
+	• If statements have space around the brackets unless it is only comparing
+		the return value.
+
+
+Indentation
+--------------------------------------------------------------------------------
+All lines should be indented with a tab character (ASCII character 9).  Any
+other spacing should be done with spaces.  The size of you editors tab doesn't
+matter, anytime it sould need to, you should be using spaces.
+
+Example:
+
+function foo ( arg1, argTheSecond )
+{
+	int hello = 3;
+
+	while ( hello = 5; hello < 304; hello++ ) {
+		functionWithLotsOfArgs(
+		                         "this is a string",
+		                         5,
+		                         false,
+		                         "the last arg"
+/* Little illistration of tabs and spaces
+\t
+	\t
+		ssssssssssssssssssssssss
+*/
+		                      );
+	}
+}
+
+You should notice that functionWithLotsOfArgs() is indented with 2 tabs.
+Therfore, it's arguments are indented with 2 tabs, then the length of the
+funtion name then 2 spaces for the variable names.  In this case there are no
+arguments on the first line, this doesn't really matter to me.  If you want you
+can put stuff there.  I usually only put stuff there if it is something like a
+initilizer or structure the fuction needs and then put the other arguments
+afterwords on other lines.  This is reminisant from C which I love so much.

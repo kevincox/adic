@@ -1,0 +1,22 @@
+var EXPORTED_SYMBOLS = ["ADIC"];
+
+var ADIC = {
+	/* Include prefrences from here down. */
+	prefs: ["extensions.adic."],
+
+	/* true for system info */
+	system: true,
+
+	/* Should we include a list of installed extensions? */
+	extensions: true,
+
+	custom: {
+		/* A list of file names to include. */
+		files: [],
+
+		/* A list of things to include in the output */
+		constants: {
+			key: "value",
+		},
+	},
+};
