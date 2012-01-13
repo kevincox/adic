@@ -10,13 +10,11 @@ var ADIC_info = {
 	/* Should we include a list of installed extensions? */
 	extensions: true,
 
-	custom: {
-		/* A list of file names to include. */
-		files: [],
+	/* A list of file names to include. */
+	files: [],
 
-		/* A list of things to include in the output */
-		constants: {
-			key: "value",
-		},
+	/* A list of things to include in the output */
+	constants: {
+		key: "value",
 	},
 };
