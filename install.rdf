@@ -4,7 +4,7 @@
 		<em:id>adic@youarefunny.addons.mozilla.org</em:id>
 		<em:type>2</em:type>
 		<em:name>ADIC - Addon Debug Info Collector</em:name>
-		<!--<em:code>ginstantint</em:code> Still will be picked up by our script,
+		<!--<em:code>adic</em:code> Still will be picked up by our script,
 		                                   but won't bother the Mozilla guys.-->
 		<em:version>0.1.0</em:version>
 		<em:creator>Kevin Cox</em:creator>
