@@ -62,7 +62,7 @@ var adic = {
 				var l = a.getResourceURI("adic.json").spec; //.QueryInterface(Ci.nsIFileURL).file.path;
 
 				Cu.import(l);
-				s.json = ADIC;
+				s.json = ADIC_info;
 				//Cu.unload(l); // To ensure we only get the freshest.
 			}
 

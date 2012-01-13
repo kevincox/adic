@@ -34,18 +34,14 @@ do
 done
 
 commands="
-cd /home/frs/project/g/gi/ginstantint/
+cd /home/frs/project/a/ad/adic/
 put update.rdf
 put *.xpi Packages/
 
 rm Latest.xpi
 symlink Packages/$latest Latest.xpi
-
-put update.rdf /home/project-web/ginstantint/htdocs/updates/
-put *.xpi /home/project-web/ginstantint/htdocs/updates/releases/"
+"
 
 read -p 'Please enter your SourceForge username:	' user
 
-echo "$commands" | sftp "$user,ginstantint@frs.sourceforge.net"
-
-rm update.rdf
+echo "$commands" | sftp "$user,adic@frs.sourceforge.net"

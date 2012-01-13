@@ -1,6 +1,6 @@
-var EXPORTED_SYMBOLS = ["ADIC"];
+var EXPORTED_SYMBOLS = ["ADIC_info"];
 
-var ADIC = {
+var ADIC_info = {
 	/* Include prefrences from here down. */
 	prefs: ["extensions.adic."],
 
