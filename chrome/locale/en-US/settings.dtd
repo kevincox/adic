@@ -1,6 +1,3 @@
-<!ENTITY pref.movetogoogle.title   "Move to Google">
-<!ENTITY pref.movetogoogle.desc    "Move over the the Google search box.">
-<!ENTITY pref.clearsearchbar.title "Clear search bar">
-<!ENTITY pref.clearsearchbar.desc  "Clear the search bar after searching.">
-<!ENTITY pref.resetsearchbar.title "Reset search engine">
-<!ENTITY pref.resetsearchbar.desc  "Reset the search engine to the default after searching.">
+<!ENTITY pref.menuitem.title   "Show menu item.">
+<!ENTITY pref.menuitem.desc    "Show the 'Collect Debug Logs' item in the menu.
+                                (will take effect on new windows)">

@@ -37,11 +37,15 @@ function d ( msg, important )
 
 d("bootstrap.js loaded.");
 
+var constants = {
+	prefBranch: "extensions.adic.",
+}
+
 function launchApp ( )
 {
 	Services.ww.openWindow(null, "chrome://adic/content/adic.xul",
 	                       "Addon Debug Info Collector",
-	                       "chrome,centerscreen,height=99999,width=600,scrollbars=yes", null);
+	                       "chrome,centerscreen,height=99999,width=800,scrollbars=yes", null);
 }
 
 function ADIC ( window )
@@ -60,11 +64,14 @@ function ADIC ( window )
 
 		if (initialized) return;
 
-		menuitem = document.createElement("menuitem");
-		menuitem.setAttribute("label", strings.GetStringFromName("menuitem"));
-		menuitem.addEventListener("command", launchApp, false);
+		if (pref.menuitem)
+		{
+			menuitem = document.createElement("menuitem");
+			menuitem.setAttribute("label", strings.GetStringFromName("menuitem"));
+			menuitem.addEventListener("command", launchApp, false);
 
-		document.getElementById("menu_ToolsPopup").appendChild(menuitem);
+			document.getElementById("menu_ToolsPopup").appendChild(menuitem);
+		}
 
 		initialized = true;
 
@@ -97,7 +104,8 @@ function ADIC ( window )
 
 var instances = [];
 
-/*var pref = {
+var pref = {
+	menuitem: false,
 }
 
 var prefs = Services.prefs.getBranch(constants.prefBranch);
@@ -125,7 +133,7 @@ var prefObserver = {
 
 function initPrefs ( )
 {
-	/*** Set Default Prefrences and Get Prefrences *** /
+	/*** Set Default Prefrences and Get Prefrences ***/
 	var dprefs = Services.prefs.getDefaultBranch(constants.prefBranch);
 	for (let [key, val] in Iterator(pref))
 	{
@@ -146,9 +154,9 @@ function initPrefs ( )
 		}
 	}
 
-	/*** Add Prefrence Listener *** /
+	/*** Add Prefrence Listener ***/
 	prefs.addObserver("", prefObserver, false);
-}*/
+}
 
 var strings = Services.strings.createBundle("chrome://adic/locale/adic.properties");
 
@@ -176,7 +184,7 @@ function startup(data, reason)
 {
 	Components.manager.addBootstrappedManifestLocation(data.installPath);
 
-	//initPrefs();
+	initPrefs();
 
 	/*** Add to new windows when they are opened ***/
 	function windowWatcher(subject, topic)
@@ -199,7 +207,7 @@ function shutdown(data, reason)
 {
 	if ( reason == APP_SHUTDOWN ) return;
 
-	//prefs.removeObserver("", prefObserver, false);
+	prefs.removeObserver("", prefObserver, false);
 
 	while ( instances.length )
 	{

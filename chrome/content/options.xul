@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE window SYSTEM "chrome://ginstantint/locale/settings.dtd">
+<!DOCTYPE window SYSTEM "chrome://adic/locale/settings.dtd">
 <vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 	<setting pref="extensions.adic.menuitem" type="bool"
-		title="&pref.movetogoogle.title;"
-		desc="&pref.movetogoogle.desc;"
+		title="&pref.menuitem.title;"
+		desc="&pref.menuitem.desc;"
 	/>
 </vbox>
