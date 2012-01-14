@@ -40,7 +40,8 @@ var ADIC = {
 
 	gatherInfo: function ( id, code, callback, extra ) {
 		extra = extra || {};
-		var overides = extra.overides;
+		var overide = extra.overide;
+		var merge = extra.merge;
 
 		AddonManager.getAddonByID(id, function(a) {
 			var json;
@@ -71,15 +72,43 @@ var ADIC = {
 			var files = json.files || [];
 			var constants  = json.constants || {};
 
+			/*** Process Merges ***/
+			merge = merge || {};
+
+			if (merge.prefs)
+			{
+				if ( typeof prefs != "object" ) prefs = merge.prefs;
+				else prefs = prefs.concat(merge.prefs);
+			}
+			if (merge.extensions)
+			{
+				if ( typeof extensions != "object" ) extensions = merge.extensions;
+				else extensions = extensions.concat(merge.extensions);
+			}
+			if (merge.files)
+			{
+				if ( typeof files != "object" ) files = merge.files;
+				else files = files.concat(merge.files);
+			}
+			if (merge.constants)
+			{
+				if ( typeof constants != "object" ) constants = merge.constants;
+				else
+				{
+					for ( k in merge.constants )
+						constants[k] = merge.constants[k];
+				}
+
+			}
+
 			/*** Process User Overides ***/
+			overides = overide || {};
 
-			overides = overides || {};
-
-			if ( overides.prefs != undefined )      prefs = overides.prefs;
-			if ( overides.system != undefined )     system = overides.system;
-			if ( overides.extensions != undefined ) extensions = overides.extensions;
-			if ( overides.files != undefined )      files = overides.files;
-			if ( overides.constants != undefined )  constants = overides.constants;
+			if ( overide.prefs != undefined )      prefs = overide.prefs;
+			if ( overide.system != undefined )     system = overide.system;
+			if ( overide.extensions != undefined ) extensions = overide.extensions;
+			if ( overide.files != undefined )      files = overide.files;
+			if ( overide.constants != undefined )  constants = overide.constants;
 
 			var out = ["	### ADIC OUTPUT"];
 

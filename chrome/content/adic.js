@@ -54,11 +54,11 @@ var adic = {
 
 		function unChecked(id) {return !document.getElementById(id).checked;}
 
-		var overides = {};
+		var overide = {};
 
-		if (unChecked("info_prefs"))  overides.prefs = [];
-		if (unChecked("info_os"))     overides.system = false;
-		if (unChecked("info_ext"))    overides.extensions = [];
+		if (unChecked("info_prefs"))  overide.prefs = [];
+		if (unChecked("info_os"))     overide.system = false;
+		if (unChecked("info_ext"))    overide.extensions = [];
 		if (unChecked("info_custom"))
 		{
 			overides.files = [];
@@ -67,7 +67,7 @@ var adic = {
 
 		ADIC.gatherInfo(ext, code, function (info) {
 			document.getElementById("out").value = info;
-		}, {overides:overides});
+		}, {overide:overide});
 
 	},
 
