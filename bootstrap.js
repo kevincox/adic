@@ -27,7 +27,7 @@ Components.utils.import("resource://gre/modules/AddonManager.jsm");
 
 function d ( msg, important )
 {
-	important = true; // Uncomment for debuging.
+	if (pref.debug) important = true;
 
 	if (!important) return;
 
@@ -105,7 +105,8 @@ function ADIC ( window )
 var instances = [];
 
 var pref = {
-	menuitem: false,
+	debug: false,
+	menuitem: true,
 }
 
 var prefs = Services.prefs.getBranch(constants.prefBranch);
