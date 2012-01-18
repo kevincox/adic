@@ -45,7 +45,7 @@ function launchApp ( )
 {
 	Services.ww.openWindow(null, "chrome://adic/content/adic.xul",
 	                       "Addon Debug Info Collector",
-	                       "chrome,centerscreen,height=99999,width=800,scrollbars=yes", null);
+	                       "chrome,centerscreen,height=500,width=800", null);
 }
 
 function ADIC ( window )

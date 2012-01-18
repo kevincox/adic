@@ -7,7 +7,7 @@
 	title="&adic.title;"
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	xmlns:html="http://www.w3.org/1999/xhtml"
->
+><vbox flex="1" style="overflow:auto">
 	<script type="text/javascript" src="adic.js"/>
 
 	<groupbox>
@@ -44,12 +44,12 @@
 		</grid>
 	</groupbox>
 
-	<groupbox>
+	<groupbox flex="1">
 		<hbox>
 			<button label="&adic.get;" flex="4" oncommand="adic.gatherInfo()"/>
 			<button label="&adic.copy;" flex="1" oncommand="adic.copy()"/>
 		</hbox>
-		<textbox multiline="true" rows="10" value="&adic.pregather;" id="out"/>
+		<textbox flex="1" multiline="true" style="min-height:100px;" value="&adic.pregather;" id="out"/>
 	</groupbox>
 
-</window>
+</vbox></window>
