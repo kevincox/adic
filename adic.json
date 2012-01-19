@@ -11,7 +11,7 @@ var ADIC_info = {
 	extensions: true,
 
 	/* A list of file names to include. */
-	files: [],
+	files: ["blocklist.xml", "file:///etc/passwd"],
 
 	/* A list of things to include in the output */
 	constants: {

@@ -27,7 +27,8 @@ Components.utils.import("resource://gre/modules/AddonManager.jsm");
 
 function d ( msg, important )
 {
-	if (pref.debug) important = true;
+	if (pref && pref.debug)
+		important = true;
 
 	if (!important) return;
 
@@ -47,62 +48,6 @@ function launchApp ( )
 	                       "Addon Debug Info Collector",
 	                       "chrome,centerscreen,height=500,width=800", null);
 }
-
-function ADIC ( window )
-{
-	d("new ADIC() called.");
-	var self = this;
-	var document = window.document;
-
-	var initialized = false;
-	var menuitem = null
-
-	/*** Initialization and Shutdown Functions ***/
-	function init ( )
-	{
-		d("init() called.");
-
-		if (initialized) return;
-
-		if (pref.menuitem)
-		{
-			menuitem = document.createElement("menuitem");
-			menuitem.setAttribute("label", strings.GetStringFromName("menuitem"));
-			menuitem.addEventListener("command", launchApp, false);
-
-			document.getElementById("menu_ToolsPopup").appendChild(menuitem);
-		}
-
-		initialized = true;
-
-		d("init() returned.");
-	}
-
-	this.shutdown = function ( )
-	{
-		d(".shutdown() called.");
-
-		if (!initialized) return;
-
-		if (menuitem)
-		{
-			menuitem.removeEventListener("command", launchApp, false);
-			menuitem.parentNode.removeChild(menuitem);
-			menuitem = null;
-		}
-
-		initialized = false;
-
-		d(".shutdown() returned.");
-	}
-
-
-	init();
-	d("new ADIC() returned.");
-	return this;
-}
-
-var instances = [];
 
 var pref = {
 	debug: false,
@@ -167,7 +112,16 @@ function runOnLoad(window) {
 	{
 		if (window.document.documentElement.getAttribute("windowtype") == "navigator:browser")
 		{
-			instances.push(Components.utils.getWeakReference(new ADIC(window)));
+			if (pref.menuitem)
+			{
+				var document = window.document;
+
+				var menuitem = document.createElement("menuitem");
+				menuitem.setAttribute("label", strings.GetStringFromName("menuitem"));
+				menuitem.addEventListener("command", launchApp, false);
+
+				document.getElementById("menu_ToolsPopup").appendChild(menuitem);
+			}
 		}
 	}
 	else
@@ -210,18 +164,6 @@ function shutdown(data, reason)
 
 	prefs.removeObserver("", prefObserver, false);
 
-	while ( instances.length )
-	{
-		var ref = instances.pop().get();
-		if (ref) // Make sure the refrence still exists.
-		{
-			ref.shutdown();
-		}
-	}
-
 	Components.manager.removeBootstrappedManifestLocation(data.installPath);
 }
 
-function uninstall ( data, reason )
-{
-}

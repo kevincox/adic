@@ -1,20 +1,47 @@
+// Copyright 2011-2012 Kevin Cox
+
+/*******************************************************************************
+*                                                                              *
+*  Permission is hereby granted, free of charge, to any person obtaining a     *
+*  copy of this software and associated documentation files (the "Software"),  *
+*  to deal in the Software without restriction, including without limitation   *
+*  the rights to use, copy, modify, merge, publish, distribute, sublicense,    *
+*  and/or sell copies of the Software, and to permit persons to whom the       *
+*  Software is furnished to do so, subject to the following conditions:        *
+*                                                                              *
+*  The above copyright notice and this permission notice shall be included in  *
+*  all copies or substantial portions of the Software.                         *
+*                                                                              *
+*  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  *
+*  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,    *
+*  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL     *
+*  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  *
+*  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING     *
+*  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER         *
+*  DEALINGS IN THE SOFTWARE.                                                   *
+*                                                                              *
+*******************************************************************************/
+
 var EXPORTED_SYMBOLS = ["ADIC"];
 
 var {classes: Cc, interfaces: Ci, utils: Cu} = Components
 
-function d ( msg, seroius )
-{
-	seroius = true // For debugging.
-	if (!seroius) return;
-
-	dump('adic: '+msg+'\n');
-	Cc["@mozilla.org/consoleservice;1"]
-		.getService(Ci.nsIConsoleService)
-		.logStringMessage('adic: '+msg);
-}
 Cu.import("resource://gre/modules/Services.jsm");
 Cu.import("resource://gre/modules/AddonManager.jsm");
 Cu.import("resource://gre/modules/FileUtils.jsm");
+
+function d ( msg, important )
+{
+	//important = true; // Uncomment for debuging.
+
+	if (pref && pref.debug)
+		important = true;
+
+	if (!important) return;
+
+	dump('adic: '+msg+'\n');
+	Services.console.logStringMessage('adic: '+msg);
+}
 
 var ADIC = {
 	checkID: function (id, callback) {
@@ -168,7 +195,22 @@ var ADIC = {
 			/*** Custom Files ***/
 			if (files.length)
 			{
-				out.push("	### CUSTOM FILES (not implemented)");
+				out.push("	### CUSTOM FILES");
+
+				var warn = [];
+
+				var dir = FileUtils.getDir("ProfD", []);
+
+				for ( i in files )
+				{
+					let f = files[i];
+
+					if ( f.indexOf("file://") == 0 )
+					{
+						warn.push(f);
+					}
+					else f = "file://prefix/";
+				}
 			}
 
 			/*** Custom Values ***/
