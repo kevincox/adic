@@ -65,13 +65,13 @@ var prefObserver = {
 		switch (typeof pref[aData])
 		{
 			case "boolean":
-				pref[aData] = aSubject.getBoolPref(aData);
+				pref[aData] = prefs.getBoolPref(aData);
 				break;
 			case "number":
-				pref[aData] = aSubject.getIntPref(aData);
+				pref[aData] = prefs.getIntPref(aData);
 				break;
 			case "string":
-				pref[aData] = aSubject.getCharPref(aData);
+				pref[aData] = prefs.getCharPref(aData);
 				break;
 		}
 	}
