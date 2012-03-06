@@ -32,15 +32,38 @@ Cu.import("resource://gre/modules/FileUtils.jsm");
 
 function d ( msg, important )
 {
-	//important = true; // Uncomment for debuging.
-
-	if (pref && pref.debug)
-		important = true;
+	important = true; // Uncomment for debuging.
 
 	if (!important) return;
 
 	dump('adic: '+msg+'\n');
 	Services.console.logStringMessage('adic: '+msg);
+}
+
+function readFile ( path )
+{
+	var fr = Cc["@mozilla.org/file/local;1"]
+	           .createInstance(Ci.nsILocalFile);
+
+	fr.initWithPath(path);
+	var out = [];
+	var fstream = Cc["@mozilla.org/network/file-input-stream;1"]
+	                .createInstance(Ci.nsIFileInputStream);
+	var cstream = Cc["@mozilla.org/intl/converter-input-stream;1"]
+	                .createInstance(Ci.nsIConverterInputStream);
+	fstream.init(fr, -1, 0, 0);
+	cstream.init(fstream, "UTF-8", 0, 0);
+
+	let (str = {})
+	{
+		while ( cstream.readString(0xffffffff, str) != 0 )
+		{
+			out.push(str.value);
+		}
+	}
+	cstream.close(); // this closes fstream
+
+	return out.join();
 }
 
 var ADIC = {
@@ -155,15 +178,15 @@ var ADIC = {
 					switch (Services.prefs.getPrefType(key))
 					{
 						case 32: // String
-							value = "	  c:" + key + " = ";
+							value = "	c:" + key + " = ";
 							value += Services.prefs.getCharPref(key);
 							break;
 						case 64: // Int
-							value = "	  i:" + key + " = ";
+							value = "	i:" + key + " = ";
 							value += Services.prefs.getIntPref(key);
 							break;
 						case 128: // bool
-							value = "	  b:" + key + " = ";
+							value = "	b:" + key + " = ";
 							value += Services.prefs.getBoolPref(key);
 							break;
 					}
@@ -199,17 +222,29 @@ var ADIC = {
 
 				var warn = [];
 
-				var dir = FileUtils.getDir("ProfD", []);
+				var dir = FileUtils.getDir("ProfD", []).path;
 
 				for ( i in files )
 				{
 					let f = files[i];
 
-					if ( f.indexOf("file://") == 0 )
+					if (f.match("^/|^[A-Z]:\\\\")) // Absolute path.
 					{
 						warn.push(f);
+						out.push("	>>>>>>>>>> "+f);
+						out.push('	'+
+								 readFile(f).replace(/\n/g, "\n\t") +
+								 "<<<<<<<<<< "+f);
 					}
-					else f = "file://prefix/";
+					else
+					{
+						if ( f.indexOf("..") >= 0 ) warn.push(f);
+
+						out.push("	>>>>>>>>>> "+f+'\t');
+						out.push('	' +
+								 readFile(dir+'/'+f).replace(/\n/g, "\n\t") +
+								 "<<<<<<<<<< "+f);
+				}
 				}
 			}
 
