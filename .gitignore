@@ -4,6 +4,7 @@
 # backup files
 *~
 *.bak
+\#*#
 
 # pakages
 *.xpi
