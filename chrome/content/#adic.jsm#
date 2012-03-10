@@ -263,7 +263,7 @@ var ADIC = {
 				if ( extensions !== true )
 				{
 					var map = {}
-					for ( e in extensions ) map[extensions[e]] = true;
+					for ( e in extensions ) map[extension.e] = true;
 					extensions = map;
 				}
 				else extensions = false
@@ -275,17 +275,19 @@ var ADIC = {
 					for ( ai in addons )
 					{
 						var a = addons[ai];
-
+						
 						d(a.id);
 
 						if ( extensions && (extensions[a.id] == undefined))
 							continue;
-
+						
 						var s = "	" + a.type + ": ";
 						s += a.id + "(" + a.name + ")";
 						s += " " + a.version;
 
 						if (!a.isActive) s += " DISABLED"
+
+						out.push(s);
 
 						adns.push({n: a.name, s: s});
 					}
@@ -296,7 +298,7 @@ var ADIC = {
 					{
 						out.push(adns[a].s);
 					}
-
+				
 					callback(out.join("\n"));
 				});
 			}
