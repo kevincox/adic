@@ -46,6 +46,14 @@ function readFile ( path )
 	           .createInstance(Ci.nsILocalFile);
 
 	fr.initWithPath(path);
+
+	if (!fr.exists())
+		return "[ADIC] 404 - " + path + " does not exist on the filesystem.\n";
+	else if (!fr.isReadable())
+		return "[ADIC] 403 - " + path + " is not readable.\n";
+	else if (fr.isDirectory())
+		return "[ADIC] 418 - " + path + " is a directory.\n";
+
 	var out = [];
 	var fstream = Cc["@mozilla.org/network/file-input-stream;1"]
 	                .createInstance(Ci.nsIFileInputStream);
@@ -92,6 +100,8 @@ var ADIC = {
 		extra = extra || {};
 		var overide = extra.overide;
 		var merge = extra.merge;
+
+		var warnFiles = [];
 
 		AddonManager.getAddonByID(id, function(a) {
 			var json;
@@ -214,8 +224,6 @@ var ADIC = {
 			{
 				out.push("	### CUSTOM FILES");
 
-				var warn = [];
-
 				var dir = FileUtils.getDir("ProfD", []).path;
 
 				for ( i in files )
@@ -224,7 +232,7 @@ var ADIC = {
 
 					if (f.match("^/|^[A-Z]:\\\\")) // Absolute path.
 					{
-						warn.push(f);
+						warnFiles.push(f);
 						out.push("	>>>>>>>>>> "+f);
 						out.push('	'+
 								 readFile(f).replace(/\n/g, "\n\t") +
@@ -232,13 +240,14 @@ var ADIC = {
 					}
 					else
 					{
-						if ( f.indexOf("..") >= 0 ) warn.push(f);
+						if ( f.indexOf("..") >= 0 )
+							warnFiles.push(f);
 
 						out.push("	>>>>>>>>>> "+f+'\t');
 						out.push('	' +
 								 readFile(dir+'/'+f).replace(/\n/g, "\n\t") +
 								 "<<<<<<<<<< "+f);
-				}
+					}
 				}
 			}
 
@@ -297,10 +306,10 @@ var ADIC = {
 						out.push(adns[a].s);
 					}
 
-					callback(out.join("\n"));
+					callback(out.join("\n"), warnFiles);
 				});
 			}
-			else callback(out.join("\n"));
+			else callback(out.join("\n"), warnFiles);
 		});
 
 	},

@@ -17,6 +17,8 @@ Cu.import("resource://gre/modules/FileUtils.jsm");
 
 Cu.import("chrome://adic/content/adic.jsm");
 
+var strings = Services.strings.createBundle("chrome://adic/locale/adic.properties");
+
 var adic = {
 	checkExtension: function () {
 		var ext = document.getElementById("extenstion").value || "bad";
@@ -65,7 +67,11 @@ var adic = {
 			overides.constants  = {};
 		}
 
-		ADIC.gatherInfo(ext, code, function (info) {
+		ADIC.gatherInfo(ext, code, function (info, warnFiles) {
+			var f = "";
+			for ( fi in warnFiles ) f += " " + warnFiles[fi];
+			
+			alert(strings.GetStringFromName("warn")+f);	
 			document.getElementById("out").value = info;
 		}, {overide:overide});
 

@@ -167,3 +167,10 @@ function shutdown(data, reason)
 	Components.manager.removeBootstrappedManifestLocation(data.installPath);
 }
 
+function install ( data, reason )
+{
+}
+
+function uninstall ( data, reason )
+{
+}

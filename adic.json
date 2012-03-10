@@ -17,7 +17,7 @@ var ADIC_info = {
 	///A list of file names to include.
 	/* Relitive paths will be relitive from the profile directory.
 	 */
-	files: ["blocklist.xml", "/etc/passwd"],
+	files: ["blocklist.xml", "/proc/cpuinfo"],
 
 	/* A list of things to include in the output */
 	constants: {
