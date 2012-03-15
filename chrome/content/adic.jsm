@@ -84,8 +84,8 @@ var ADIC = {
 				return;
 			}
 
-			if (addon.hasResource("adic.json")) callback(2);
-			else                                callback(1);
+			if (addon.hasResource("adic.jsm")) callback(2);
+			else                               callback(1);
 		});
 	},
 
@@ -105,13 +105,13 @@ var ADIC = {
 
 		AddonManager.getAddonByID(id, function(a) {
 			var json;
-			if (!a.hasResource("adic.json"))
+			if (!a.hasResource("adic.jsm"))
 			{
 				json = {};
 			}
 			else
 			{
-				var l = a.getResourceURI("adic.json").spec;
+				var l = a.getResourceURI("adic.jsm").spec;
 
 				Cu.import(l);
 				json = ADIC_info;
