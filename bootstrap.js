@@ -105,6 +105,7 @@ function initPrefs ( )
 }
 
 var strings = Services.strings.createBundle("chrome://adic/locale/adic.properties");
+var menuitems = [];
 
 function runOnLoad(window) {
 	// Listen for one load event before checking the window type
@@ -121,6 +122,8 @@ function runOnLoad(window) {
 				menuitem.addEventListener("command", launchApp, false);
 
 				document.getElementById("menu_ToolsPopup").appendChild(menuitem);
+
+				menuitems.push(Components.utils.getWeakReference(menuitem));
 			}
 		}
 	}
@@ -134,6 +137,13 @@ function runOnLoad(window) {
 	}
 }
 
+/*** Add to new windows when they are opened ***/
+function windowWatcher(subject, topic)
+{
+	if (topic == "domwindowopened")
+		runOnLoad(subject);
+}
+
 /*** Bootstrap Functions ***/
 function startup(data, reason)
 {
@@ -141,12 +151,6 @@ function startup(data, reason)
 
 	initPrefs();
 
-	/*** Add to new windows when they are opened ***/
-	function windowWatcher(subject, topic)
-	{
-		if (topic == "domwindowopened")
-			runOnLoad(subject);
-	}
 	Services.ww.registerNotification(windowWatcher);
 
 	/*** Add to currently open windows ***/
@@ -162,7 +166,17 @@ function shutdown(data, reason)
 {
 	if ( reason == APP_SHUTDOWN ) return;
 
+	Services.ww.unregisterNotification(windowWatcher);
+
 	prefs.removeObserver("", prefObserver, false);
+
+	while (menuitems.length)
+	{
+		var mi = menuitems.pop().get();
+		if (!mi) continue;
+
+		mi.parentNode.removeChild(mi);
+	}
 
 	Components.manager.removeBootstrappedManifestLocation(data.installPath);
 }
