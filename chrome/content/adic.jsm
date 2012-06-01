@@ -115,7 +115,7 @@ var ADIC = {
 
 				Cu.import(l);
 				json = ADIC_info;
-				//Cu.unload(l); // To ensure we only get the freshest.
+				Cu.unload(l);
 			}
 
 			/*** Get values from config files or set default ***/
