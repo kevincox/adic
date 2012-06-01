@@ -44,6 +44,7 @@ var constants = {
 
 function launchApp ( )
 {
+	d("cur: "+menuitems.length);
 	Services.ww.openWindow(null, "chrome://adic/content/adic.xul",
 	                       "Addon Debug Info Collector",
 	                       "chrome,centerscreen,height=500,width=800", null);
@@ -123,7 +124,8 @@ function runOnLoad(window) {
 
 				document.getElementById("menu_ToolsPopup").appendChild(menuitem);
 
-				menuitems.push(Components.utils.getWeakReference(menuitem));
+				menuitems.push(menuitem);
+				d("pushed menuitem: "+menuitems.length);
 			}
 		}
 	}
@@ -140,8 +142,23 @@ function runOnLoad(window) {
 /*** Add to new windows when they are opened ***/
 function windowWatcher(subject, topic)
 {
-	if (topic == "domwindowopened")
+	if ( topic == "domwindowopened" )
+	{
 		runOnLoad(subject);
+	}
+	else if ( topic == "domwindowclosed" )
+	{
+		for ( i in menuitems )
+		{
+			var mi = menuitems[i];
+
+			if ( mi.ownerDocument == subject.window.document )
+			{
+				menuitems.splice(i, 1);
+				break;
+			}
+		}
+	}
 }
 
 /*** Bootstrap Functions ***/
@@ -170,11 +187,10 @@ function shutdown(data, reason)
 
 	prefs.removeObserver("", prefObserver, false);
 
+	/***** Remove the Menu Items *****/
 	while (menuitems.length)
 	{
-		var mi = menuitems.pop().get();
-		if (!mi) continue;
-
+		var mi = menuitems.pop()
 		mi.parentNode.removeChild(mi);
 	}
 
