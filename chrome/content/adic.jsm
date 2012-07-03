@@ -285,8 +285,6 @@ var ADIC = {
 					{
 						var a = addons[ai];
 
-						d(a.id);
-
 						if ( extensions && (extensions[a.id] == undefined))
 							continue;
 
