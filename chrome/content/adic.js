@@ -70,8 +70,8 @@ var adic = {
 		ADIC.gatherInfo(ext, code, function (info, warnFiles) {
 			var f = "";
 			for ( fi in warnFiles ) f += " " + warnFiles[fi];
-			
-			alert(strings.GetStringFromName("warn")+f);	
+
+			if (warnFiles.length > 0 ) alert(strings.GetStringFromName("warn")+f);
 			document.getElementById("out").value = info;
 		}, {overide:overide});
 
