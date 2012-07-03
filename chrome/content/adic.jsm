@@ -291,7 +291,7 @@ var ADIC = {
 							continue;
 
 						var s = "	" + a.type + ": ";
-						s += a.id + "(" + a.name + ")";
+						s += a.id + " (" + a.name + ")";
 						s += " " + a.version;
 
 						if (!a.isActive) s += " DISABLED"
