@@ -67,7 +67,9 @@ var adic = {
 			overides.constants  = {};
 		}
 
-		ADIC.gatherInfo(ext, code, function (info, warnFiles) {
+		ADIC.gatherInfo(ext, code, function (info, data) {
+			var {warnFiles: warnFiles} = data;
+
 			var f = "";
 			for ( fi in warnFiles ) f += " " + warnFiles[fi];
 

@@ -304,10 +304,10 @@ var ADIC = {
 						out.push(adns[a].s);
 					}
 
-					callback(out.join("\n"), warnFiles);
+					callback(out.join("\n"), {warnFiles: warnFiles});
 				});
 			}
-			else callback(out.join("\n"), warnFiles);
+			else callback(out.join("\n"), {warnFiles: warnFiles});
 		});
 
 	},
