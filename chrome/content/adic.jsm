@@ -170,10 +170,10 @@ var ADIC = {
 			if ( overide.files != undefined )      files = overide.files;
 			if ( overide.constants != undefined )  constants = overide.constants;
 
-			var out = ["	### ADIC OUTPUT"];
+			var out = ["### ADIC OUTPUT"];
 
 			/*** Prefrences ***/
-			if (prefs.length) out.push("	### PREFRENCES");
+			if (prefs.length) out.push("### PREFRENCES");
 
 			var db = Services.prefs.getDefaultBranch("");
 			for ( b in prefs )
@@ -188,15 +188,15 @@ var ADIC = {
 					switch (Services.prefs.getPrefType(key))
 					{
 						case 32: // String
-							value = "	c:" + key + " = ";
+							value = "c:" + key + " = ";
 							value += Services.prefs.getCharPref(key);
 							break;
 						case 64: // Int
-							value = "	i:" + key + " = ";
+							value = "i:" + key + " = ";
 							value += Services.prefs.getIntPref(key);
 							break;
 						case 128: // bool
-							value = "	b:" + key + " = ";
+							value = "b:" + key + " = ";
 							value += Services.prefs.getBoolPref(key);
 							break;
 					}
@@ -208,21 +208,21 @@ var ADIC = {
 			/*** System Information ***/
 			if (system)
 			{
-				out.push("	### SYSTEM INFORMATION");
+				out.push("### SYSTEM INFORMATION");
 				for ( k in Services.appinfo )
 				{
 					var v;
 					if ( typeof Services.appinfo[k] == "function" ) v = "[[[function]]]"
 					else v = Services.appinfo[k];
 
-					out.push("	  "+k+" = "+v);
+					out.push(k+" = "+v);
 				}
 			}
 
 			/*** Custom Files ***/
 			if (files.length)
 			{
-				out.push("	### CUSTOM FILES");
+				out.push("### CUSTOM FILES");
 
 				var dir = FileUtils.getDir("ProfD", []).path;
 
@@ -233,9 +233,8 @@ var ADIC = {
 					if (f.match("^/|^[A-Z]:\\\\")) // Absolute path.
 					{
 						warnFiles.push(f);
-						out.push("	>>>>>>>>>> "+f);
-						out.push('	'+
-								 readFile(f).replace(/\n/g, "\n\t") +
+						out.push(">>>>>>>>>> "+f);
+						out.push(readFile(f) +
 								 "<<<<<<<<<< "+f);
 					}
 					else
@@ -243,9 +242,8 @@ var ADIC = {
 						if ( f.indexOf("..") >= 0 )
 							warnFiles.push(f);
 
-						out.push("	>>>>>>>>>> "+f+'\t');
-						out.push('	' +
-								 readFile(dir+'/'+f).replace(/\n/g, "\n\t") +
+						out.push(">>>>>>>>>> "+f+'\t');
+						out.push(readFile(dir+'/'+f) +
 								 "<<<<<<<<<< "+f);
 					}
 				}
@@ -257,17 +255,17 @@ var ADIC = {
 			{
 				if (!printed)
 				{
-					out.push("	### CUSTOM VALUES");
+					out.push("### CUSTOM VALUES");
 					printed = true;
 				}
 
-				out.push("	  "+k+" = "+constants[k]);
+				out.push(k+" = "+constants[k]);
 			}
 
 			/*** Extensions ***/
 			if (extensions)
 			{
-				out.push("	### EXENSIONS");
+				out.push("### EXENSIONS");
 
 				if ( extensions !== true )
 				{
@@ -288,7 +286,7 @@ var ADIC = {
 						if ( extensions && (extensions[a.id] == undefined))
 							continue;
 
-						var s = "	" + a.type + ": ";
+						var s = a.type + ": ";
 						s += a.id + " (" + a.name + ")";
 						s += " " + a.version;
 
