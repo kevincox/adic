@@ -86,4 +86,13 @@ var adic = {
 		          .getService(Components.interfaces.nsIClipboardHelper)
 		          .copyString(out);
 	},
+	copyIndented: function () {
+		var out = document.getElementById("out").value;
+
+		out = "\t" + out.replace(/\n/g, "\n\t"); // Indent.
+
+		Components.classes["@mozilla.org/widget/clipboardhelper;1"]
+		          .getService(Components.interfaces.nsIClipboardHelper)
+		          .copyString(out);
+	},
 }

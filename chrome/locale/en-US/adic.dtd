@@ -25,4 +25,5 @@
 <!ENTITY adic.info.custom    "Addon-specific information">
 <!ENTITY adic.get            "Gather Debuging Information">
 <!ENTITY adic.copy           "Copy to Clipboard">
+<!ENTITY adic.copyIndented   "Copy Indented">
 <!ENTITY adic.pregather      "Click gather to get the debugging info.">

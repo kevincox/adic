@@ -48,6 +48,7 @@
 		<hbox>
 			<button label="&adic.get;" flex="4" oncommand="adic.gatherInfo()"/>
 			<button label="&adic.copy;" flex="1" oncommand="adic.copy()"/>
+			<button label="&adic.copyIndented;" flex="1" oncommand="adic.copyIndented()"/>
 		</hbox>
 		<textbox flex="1" multiline="true" style="min-height:100px;" value="&adic.pregather;" id="out"/>
 	</groupbox>
