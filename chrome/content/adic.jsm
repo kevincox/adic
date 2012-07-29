@@ -235,7 +235,7 @@ var ADIC = {
 						warnFiles.push(f);
 						out.push(">>>>>>>>>> "+f);
 						out.push(readFile(f) +
-								 "<<<<<<<<<< "+f);
+						         "<<<<<<<<<< "+f);
 					}
 					else
 					{
@@ -244,7 +244,7 @@ var ADIC = {
 
 						out.push(">>>>>>>>>> "+f+'\t');
 						out.push(readFile(dir+'/'+f) +
-								 "<<<<<<<<<< "+f);
+						         "<<<<<<<<<< "+f);
 					}
 				}
 			}
