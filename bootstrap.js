@@ -125,7 +125,6 @@ function runOnLoad(window) {
 				document.getElementById("menu_ToolsPopup").appendChild(menuitem);
 
 				menuitems.push(menuitem);
-				d("pushed menuitem: "+menuitems.length);
 			}
 		}
 	}
