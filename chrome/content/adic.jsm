@@ -75,6 +75,10 @@ function readFile ( path )
 }
 
 var ADIC = {
+	NO_ADDON:     0,
+	ADDON_FOUND:  1,
+	ADIC_ENABLED: 2,
+
 	checkID: function (id, callback) {
 		AddonManager.getAddonByID(id, function(addon) {
 

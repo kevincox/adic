@@ -32,7 +32,7 @@ var adic = {
 			var input  = document.getElementById("extenstion_code");
 			var button = document.getElementById("codecheck");
 
-			var good = ( status == 2 );
+			var good = ( status == ADIC.ADIC_ENABLED );
 
 			input.disabled = good;
 			button.disabled = good;
