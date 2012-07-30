@@ -233,7 +233,7 @@ var ADIC = {
 				{
 					let f = files[i];
 
-					if (f.match("^/|^[A-Z]:\\\\")) // Absolute path.
+					if (f.match("^/|^[A-Z]+:\\\\")) // Absolute path.
 					{
 						warnFiles.push(f);
 						out.push(">>>>>>>>>> "+f);
