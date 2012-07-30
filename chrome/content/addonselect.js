@@ -50,6 +50,10 @@ var asel = {
 			if ( e.keyCode == 13 ) asel.submit();
 		}, false);
 
+		document.getElementById("addons").addEventListener("dblclick", function ( ) {
+			asel.submit();
+		}, false);
+
 		document.getElementById("id").focus();
 	},
 
@@ -76,10 +80,6 @@ var asel = {
 				icon.width  = 25;
 				icon.height = 25;
 				item.insertBefore(icon, item.firstChild);
-
-				item.ondblclick = function ( ) {
-					asel.submit();
-				};
 			}
 		}
 
