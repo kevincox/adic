@@ -299,7 +299,7 @@ var ADIC = {
 					}
 
 					///// Sort and print.
-					adns.sort(function(s1, s2){(s1.n>s2.n)?1:-1;});
+					adns.sort(function(s1, s2){return(s1.n>s2.n)?1:-1;});
 					for ( a in adns )
 					{
 						out.push(adns[a].s);
