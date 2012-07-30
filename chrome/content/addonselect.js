@@ -37,7 +37,11 @@ var asel = {
 					if ( status == ADIC.ADIC_ENABLED )
 						asel.addons.push(a);
 
-					if ( --waiting == 0 ) asel.update();
+					if ( --waiting == 0 )
+					{
+						asel.addons.sort(function(s1, s2){return(s1.name>s2.name)?1:-1;});
+						asel.update();
+					}
 				});
 			}
 		});
@@ -66,6 +70,7 @@ var asel = {
 
 		for ( ai in asel.addons )
 		{
+			d(ai);
 			let a = asel.addons[ai];
 
 			if ( a.id  .toLowerCase().search(q) < 0 &&
