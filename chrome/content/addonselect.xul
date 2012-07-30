@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://adic/locale/adic.dtd">
+
+<window
+	id="adic"
+	title="&adic.title;"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+><vbox flex="1" style="overflow:auto">
+	<script type="text/javascript" src="addonselect.js"/>
+	<hbox>
+		<textbox id="id" flex="1" />
+		<button label="Select" id="submit" oncommand="asel.submit();"/>
+	</hbox>
+	<richlistbox id="addons">
+	</richlistbox>
+</vbox></window>

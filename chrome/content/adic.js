@@ -39,6 +39,18 @@ var adic = {
 		});
 	},
 
+	setID: function (id) {
+		document.getElementById("extenstion").value = id;
+		adic.checkExtension();
+	},
+
+	selectID: function () {
+		window.openDialog("chrome://adic/content/addonselect.xul",
+		                  "Select an Addon",
+		                  "chrome,centerscreen,width=400,height=500",
+		                  adic.setID);
+	},
+
 	checkExtensionCode: function () {
 		var ext = document.getElementById("extenstion_code").value || "bad(#$#";
 

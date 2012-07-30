@@ -15,6 +15,7 @@
 		<label>&adic.extension.id;</label>
 		<hbox>
 			<textbox id="extenstion" flex="1" />
+			<button label="&adic.extension.select;" id="idselect" oncommand="adic.selectID();"/>
 			<button label="&adic.extension.check;" id="idcheck" oncommand="adic.checkExtension();"/>
 		</hbox>
 		<label>&adic.extension.code;</label>

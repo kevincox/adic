@@ -25,7 +25,7 @@
 		</em:targetApplication>
 
 		<em:bootstrap>true</em:bootstrap>
-		<em:iconURL>chrome://adic/content/logo.gif</em:iconURL>
+		<em:iconURL>chrome://adic/content/logo.png</em:iconURL>
 
 		<em:optionsURL>chrome://adic/content/options.xul</em:optionsURL>
 		<em:optionsType>2</em:optionsType>

@@ -81,8 +81,7 @@ var ADIC = {
 
 	checkID: function (id, callback) {
 		AddonManager.getAddonByID(id, function(addon) {
-
-			if (!addon)
+			if ( !addon || addon.type == "plugin" )
 			{
 				callback(0);
 				return;

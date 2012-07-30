@@ -5,7 +5,8 @@
 <!ENTITY adic.extension.code "The code of the extension.  You should be able to
                               get this from the extension's maintainers.  This
                               is unessary if the extension supports ADIC.">
-<!ENTITY adic.extension.check "Check">
+<!ENTITY adic.extension.check  "Check">
+<!ENTITY adic.extension.select "Browse">
 <!ENTITY adic.info.cap       "What information should be gathered?">
 <!ENTITY adic.info.desc      "Generally it is best to keep everything checked or
                               to listen to who asked you for the information.
