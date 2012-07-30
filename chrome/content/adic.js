@@ -64,31 +64,35 @@ var adic = {
 		var ext  = document.getElementById("extenstion").value || "bad";
 		var code = document.getElementById("extenstion_code").value;
 
-		/*** Process User Overides ***/
-
-		function unChecked(id) {return !document.getElementById(id).checked;}
-
 		var overide = {};
 
-		if (unChecked("info_prefs"))  overide.prefs = [];
-		if (unChecked("info_os"))     overide.system = false;
-		if (unChecked("info_ext"))    overide.extensions = [];
-		if (unChecked("info_custom"))
-		{
-			overides.files = [];
-			overides.constants  = {};
-		}
+		ADIC.checkID(ext, function(result) {
+			if ( result != ADIC.ADIC_ENABLED )
+				overide.prefs = ["extensions."+code+"."];
 
-		ADIC.gatherInfo(ext, code, function (info, data) {
-			var {warnFiles: warnFiles} = data;
+			/*** Process User Overides ***/
 
-			var f = "";
-			for ( fi in warnFiles ) f += " " + warnFiles[fi];
+			function unChecked(id) {return !document.getElementById(id).checked;}
 
-			if (warnFiles.length > 0 ) alert(strings.GetStringFromName("warn")+f);
-			document.getElementById("out").value = info;
-		}, {overide:overide});
+			if (unChecked("info_prefs"))  overide.prefs = [];
+			if (unChecked("info_os"))     overide.system = false;
+			if (unChecked("info_ext"))    overide.extensions = [];
+			if (unChecked("info_custom"))
+			{
+				overides.files = [];
+				overides.constants = {};
+			}
 
+			ADIC.gatherInfo(ext, function (info, data) {
+				var {warnFiles: warnFiles} = data;
+
+				var f = "";
+				for ( fi in warnFiles ) f += " " + warnFiles[fi];
+
+				if (warnFiles.length > 0 ) alert(strings.GetStringFromName("warn")+f);
+				document.getElementById("out").value = info;
+			}, {overide:overide});
+		});
 	},
 
 	copy: function () {

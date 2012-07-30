@@ -99,7 +99,7 @@ var ADIC = {
 		return keys.length > 0;
 	},
 
-	gatherInfo: function ( id, code, callback, extra ) {
+	gatherInfo: function ( id, callback, extra ) {
 		extra = extra || {};
 		var overide = extra.overide;
 		var merge = extra.merge;
@@ -108,7 +108,7 @@ var ADIC = {
 
 		AddonManager.getAddonByID(id, function(a) {
 			var json;
-			if (!a.hasResource("adic.jsm"))
+			if ( !a || !a.hasResource("adic.jsm") )
 			{
 				json = {};
 			}
@@ -122,12 +122,7 @@ var ADIC = {
 			}
 
 			/*** Get values from config files or set default ***/
-			var prefs = json.prefs
-			if (!prefs)
-			{
-				if (code) prefs = ["extensions."+code+"."];
-				else      prefs = [];
-			}
+			var prefs = json.prefs || [];
 
 			var system = json.system || true;
 			var extensions = json.extensions || true;
