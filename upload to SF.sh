@@ -33,13 +33,15 @@ do
 	true
 done
 
+rdir='/home/frs/project/a/au/autosizer/'
+
 commands="
-cd /home/frs/project/a/ad/adic/
-put update.rdf
+cd $rdir
 put *.xpi Packages/
 
-rm Latest.xpi
-symlink Packages/$latest Latest.xpi
+put $latest latest.xpi
+
+exit
 "
 
 read -p 'Please enter your SourceForge username:	' user
