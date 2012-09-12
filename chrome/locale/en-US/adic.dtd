@@ -4,7 +4,7 @@
                               get this from the extension's maintainers.">
 <!ENTITY adic.extension.code "The code of the extension.  You should be able to
                               get this from the extension's maintainers.  This
-                              is unessary if the extension supports ADIC.">
+                              is unnecessary if the extension supports ADIC.">
 <!ENTITY adic.extension.check  "Check">
 <!ENTITY adic.extension.select "Browse">
 <!ENTITY adic.info.cap       "What information should be gathered?">
@@ -20,11 +20,11 @@
                               not responsible for any information gathered and
                               you should look over the output before putting it
                               anywhere.">
-<!ENTITY adic.info.prefs     "Prefrences">
+<!ENTITY adic.info.prefs     "Preferences">
 <!ENTITY adic.info.os        "Operating System Information">
 <!ENTITY adic.info.ext       "Installed extensions">
 <!ENTITY adic.info.custom    "Addon-specific information">
-<!ENTITY adic.get            "Gather Debuging Information">
+<!ENTITY adic.get            "Gather Debugging Information">
 <!ENTITY adic.copy           "Copy to Clipboard">
 <!ENTITY adic.copyIndented   "Copy Indented">
 <!ENTITY adic.pregather      "Click gather to get the debugging info.">
