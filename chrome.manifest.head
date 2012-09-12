@@ -24,5 +24,4 @@
 
 content adic         chrome/content/
 #skin    adic classic chrome/skin/
-locale  adic en-US   chrome/locale/en-US/
-locale  adic nl      chrome/locale/nl/
+
