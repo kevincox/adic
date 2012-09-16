@@ -1,0 +1,16 @@
+<!ENTITY adic.title "附加组件调试信息收集器">
+<!ENTITY adic.extension.cap "扩展信息">
+<!ENTITY adic.extension.id "扩展的ID。你可以从扩展维护者那里获得。">
+<!ENTITY adic.extension.code "扩展的代号(用于首选项)。你可以从扩展维护者那里获得。如果扩展支持 ADIC，此项非必填。">
+<!ENTITY adic.extension.check "检查">
+<!ENTITY adic.extension.select "浏览">
+<!ENTITY adic.info.cap "需要收集的信息">
+<!ENTITY adic.info.desc "一般来说最好选中所有项或者按需要信息的人的要求去做。除了附加组件特定信息外，收集的信息不会包含任何隐私。需要注意的是附加组件的作者可以得到任何包含在附加组件内的信息。如果某个附加组件请求了异常的文件会发出警告。ADIC 不对收集的信息负责，你需要在发布之前检查输出的信息。">
+<!ENTITY adic.info.prefs "首选项">
+<!ENTITY adic.info.os "操作系统信息">
+<!ENTITY adic.info.ext "已安装扩展">
+<!ENTITY adic.info.custom "附加组件特定信息">
+<!ENTITY adic.get "收集调试信息">
+<!ENTITY adic.copy "复制到剪贴板">
+<!ENTITY adic.copyIndented "保持缩进复制">
+<!ENTITY adic.pregather "点击收集获取调试信息。">
