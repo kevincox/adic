@@ -2,7 +2,7 @@ var {classes: Cc, interfaces: Ci, utils: Cu} = Components
 
 function d ( msg, seroius )
 {
-	seroius = true // For debugging.
+	//seroius = true // For debugging.
 	if (!seroius) return;
 
 	dump('adic: '+msg+'\n');

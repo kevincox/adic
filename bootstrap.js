@@ -40,6 +40,7 @@ d("bootstrap.js loaded.");
 
 var constants = {
 	prefBranch: "extensions.adic.",
+	syncPrefBranch: "services.sync.prefs.sync.",
 }
 
 function launchApp ( )
@@ -50,14 +51,89 @@ function launchApp ( )
 	                       "chrome,centerscreen,height=500,width=800", null);
 }
 
-var pref = {
-	debug: false,
-	menuitem: true,
+var pref = {};
+var prefo = {};
+var fpref = {};
+{
+	var rbranch = Services.prefs.getBranch("");
+	rbranch.QueryInterface(Components.interfaces.nsIPrefBranch2);
+	var dbranch = Services.prefs.getDefaultBranch("");
+	
+	var syncPref = { type: "boolean" }; // Will only ever get written.
+	
+	function setPref ( key, val, def )
+	{
+		var b = def?dbranch:rbranch;
+		
+		switch (fpref[key].type)
+		{
+			case "boolean":
+				b.setBoolPref(key, val);
+				break;
+			case "number":
+				b.setIntPref(key, val);
+				break;
+			case "string":
+				b.setCharPref(key, val);
+				break;
+		}
+	}
+	function getPref ( key )
+	{
+		switch (fpref[key].type)
+		{
+			case "boolean":
+				return rbranch.getBoolPref(key);
+			case "number":
+				return rbranch.getIntPref(key);
+			case "string":
+				return rbranch.getCharPref(key);
+		}
+	}
+	
+	function addPref ( name, dflt )
+	{
+		var r = {
+			name: name,
+			absname: constants.prefBranch+name,
+			
+			type: typeof dflt,
+		};
+		
+		r.syncname = constants.syncPrefBranch+r.absname;
+		
+		prefo[r.name] = r;
+		fpref[r.absname] = r;
+		fpref[r.syncname] = syncPref;
+		
+		///// Set up defaults.
+		setPref(r.syncname, true, true);
+		setPref(r.absname, dflt, true);
+		
+		///// The API.
+		r.set = function ( v ) {
+			setPref(r.absname, v);
+		};
+		pref[name] = getPref(r.absname);
+		r.get = function ( ) {
+			return pref[name];
+		};
+		
+		r.sync = function ( sync ) {
+			setPref(r.syncname, sync);	
+		};
+		r.isSynced = function () {
+			return getPref(r.syncname);
+		};
+	}
+	
+	addPref("debug", false);
+	addPref("menuitem", true);
 }
 
+/*** Add Prefrence Listener ***/
 var prefs = Services.prefs.getBranch(constants.prefBranch);
 prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
-
 var prefObserver = {
 	observe: function (aSubject, aTopic, aData)
 	{
@@ -77,35 +153,9 @@ var prefObserver = {
 		}
 	}
 };
+prefs.addObserver("", prefObserver, false);
 
-function initPrefs ( )
-{
-	/*** Set Default Prefrences and Get Prefrences ***/
-	var dprefs = Services.prefs.getDefaultBranch(constants.prefBranch);
-	for (let [key, val] in Iterator(pref))
-	{
-		switch (typeof val)
-		{
-			case "boolean":
-				dprefs.setBoolPref(key, val);
-				pref[key] = prefs.getBoolPref(key);
-				break;
-			case "number":
-				dprefs.setIntPref(key, val);
-				pref[key] = prefs.getIntPref(key);
-				break;
-			case "string":
-				dprefs.setCharPref(key, val);
-				pref[key] = prefs.getCharPref(key);
-				break;
-		}
-	}
-
-	/*** Add Prefrence Listener ***/
-	prefs.addObserver("", prefObserver, false);
-}
-
-var strings = Services.strings.createBundle("chrome://adic/locale/adic.properties");
+var strings = {};
 var menuitems = [];
 
 function runOnLoad(window) {
@@ -117,13 +167,17 @@ function runOnLoad(window) {
 			if (pref.menuitem)
 			{
 				var document = window.document;
+				d("hre");
 
 				var menuitem = document.createElement("menuitem");
+				d("hre");
 				menuitem.setAttribute("label", strings.GetStringFromName("menuitem"));
+				d("hre");
 				menuitem.addEventListener("command", launchApp, false);
+				d("hre");
 
 				document.getElementById("menu_ToolsPopup").appendChild(menuitem);
-
+				d("hre");
 				menuitems.push(menuitem);
 			}
 		}
@@ -164,8 +218,8 @@ function windowWatcher(subject, topic)
 function startup(data, reason)
 {
 	Components.manager.addBootstrappedManifestLocation(data.installPath);
-
-	initPrefs();
+	
+	strings = Services.strings.createBundle("chrome://adic/locale/adic.properties");
 
 	Services.ww.registerNotification(windowWatcher);
 
