@@ -1,16 +1,16 @@
-<!ENTITY adic.title "Addon Debug Info Collector">
-<!ENTITY adic.extension.cap "Info over de extensie">
-<!ENTITY adic.extension.id "De ID van de extensie. Deze zou verkrijgbaar moeten zijn bij de beheerders van de extensie.">
+<!ENTITY adic.title          "Addon Debug Info Collector">
+<!ENTITY adic.extension.cap  "Info over de extensie">
+<!ENTITY adic.extension.id   "De ID van de extensie. Deze zou verkrijgbaar moeten zijn bij de beheerders van de extensie.">
 <!ENTITY adic.extension.code "De code van de extensie. Deze zou verkrijgbaar moeten zijn bij de beheerders van de extensie. Niet nodig als de extensie ADIC ondersteunt.">
-<!ENTITY adic.extension.check "Controleren">
+<!ENTITY adic.extension.check  "Controleren">
 <!ENTITY adic.extension.select "Bladeren">
-<!ENTITY adic.info.cap "Welke informatie moet worden verzameld?">
-<!ENTITY adic.info.desc "In het algemeen is het het beste om alles aangevinkt te houden of te luisteren naar wie u om de informatie heeft gevraagd. De informatie mag geen persoonlijke informatie bevatten, met uitzondering van aangepaste informatie, die alles mag bevatten waar de add-on om heeft gevraagd. Merk op dat de schrijver van de add-on al deze informatie sowieso uit de add-on kan halen. U wordt gewaarschuwd als een om ongebruikelijke bestanden add-on vraagt. ADIC is overigens niet verantwoordelijk voor de verzamelde informatie en u dient de uitvoer te controleren voordat u deze ergens plaatst.">
-<!ENTITY adic.info.prefs "Voorkeuren">
-<!ENTITY adic.info.os "Besturingssysteeminformatie">
-<!ENTITY adic.info.ext "Geïnstalleerde extensies">
-<!ENTITY adic.info.custom "Add-onspecifieke informatie">
-<!ENTITY adic.get "Foutopsporingsinformatie verzamelen">
-<!ENTITY adic.copy "Naar klembord kopiëren">
-<!ENTITY adic.copyIndented "Ingesprongen kopiëren">
-<!ENTITY adic.pregather "Klik op Verzamelen om de foutopsporingsinformatie op te halen.">
+<!ENTITY adic.info.cap       "Welke informatie moet worden verzameld?">
+<!ENTITY adic.info.desc      "In het algemeen is het het beste om alles aangevinkt te houden of te luisteren naar wie u om de informatie heeft gevraagd. De informatie mag geen persoonlijke informatie bevatten, met uitzondering van aangepaste informatie, die alles mag bevatten waar de add-on om heeft gevraagd. Merk op dat de schrijver van de add-on al deze informatie sowieso uit de add-on kan halen. U wordt gewaarschuwd als een om ongebruikelijke bestanden add-on vraagt. ADIC is overigens niet verantwoordelijk voor de verzamelde informatie en u dient de uitvoer te controleren voordat u deze ergens plaatst.">
+<!ENTITY adic.info.prefs     "Voorkeuren">
+<!ENTITY adic.info.os        "Besturingssysteeminformatie">
+<!ENTITY adic.info.ext       "Geïnstalleerde extensies">
+<!ENTITY adic.info.custom    "Add-onspecifieke informatie">
+<!ENTITY adic.get            "Foutopsporingsinformatie verzamelen">
+<!ENTITY adic.copy           "Naar klembord kopiëren">
+<!ENTITY adic.copyIndented   "Ingesprongen kopiëren">
+<!ENTITY adic.pregather      "Klik op Verzamelen om de foutopsporingsinformatie op te halen.">

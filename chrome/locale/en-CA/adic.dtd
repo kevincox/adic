@@ -1,0 +1,16 @@
+<!ENTITY adic.title          "Addon Debug Info Collector">
+<!ENTITY adic.extension.cap  "Extension Info">
+<!ENTITY adic.extension.id   "The ID of the extension.  You should be able to get this from the extension's maintainers.">
+<!ENTITY adic.extension.code "The code of the extension.  You should be able to get this from the extension's maintainers.  This is unnecessary if the extension supports ADIC.">
+<!ENTITY adic.extension.check  "Check">
+<!ENTITY adic.extension.select "Browse">
+<!ENTITY adic.info.cap       "What information should be gathered?">
+<!ENTITY adic.info.desc      "Generally it is best to keep everything checked or to listen to who asked you for the information.  The information should not contain any personal information with the exception of custom which may contain anything the specific addon asked for.  It should be noted that the author of the addon could get any of this info anyway from inside of the  addon.  You will also be warned when an addon asks for unusual files.  That being said ADIC is not responsible for any information gathered and you should look over the output before putting it anywhere.  That was a long disclaimer eh?">
+<!ENTITY adic.info.prefs     "Preferences">
+<!ENTITY adic.info.os        "What OS are you running?">
+<!ENTITY adic.info.ext       "Installed extensions">
+<!ENTITY adic.info.custom    "Addon-specific information">
+<!ENTITY adic.get            "Gather Debugging Information">
+<!ENTITY adic.copy           "Copy to Clipboard">
+<!ENTITY adic.copyIndented   "Copy Indented">
+<!ENTITY adic.pregather      "Click gather to get the debugging info.">
