@@ -1,0 +1,27 @@
+[main]
+host = https://www.transifex.com
+
+[adic.addonselect-dtd]
+file_filter = chrome/locale/<lang>/addonselect.dtd
+source_file = chrome/locale/en-US/addonselect.dtd
+source_lang = en-US
+type = DTD
+
+[adic.adic-dtd]
+file_filter = chrome/locale/<lang>/adic.dtd
+source_file = chrome/locale/en-US/adic.dtd
+source_lang = en-US
+type = DTD
+
+[adic.adic-properties]
+file_filter = chrome/locale/<lang>/adic.properties
+source_file = chrome/locale/en-US/adic.properties
+source_lang = en-US
+type = MOZILLAPROPERTIES
+
+[adic.settings-dtd]
+file_filter = chrome/locale/<lang>/settings.dtd
+source_file = chrome/locale/en-US/settings.dtd
+source_lang = en-US
+type = DTD
+
